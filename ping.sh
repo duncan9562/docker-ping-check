@@ -1,5 +1,4 @@
 #!/bin/sh
-#
 
 # Make sure argeuements have been set
 if [ "$1" != "" ]; then
