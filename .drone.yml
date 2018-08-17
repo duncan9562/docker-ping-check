@@ -8,3 +8,6 @@ pipeline:
     when:
       branch: [master, development]
       event: push
+  docker:
+    image: duncan9562/docker-ping-check
+    secrets: [ docker_username, docker_password ]
