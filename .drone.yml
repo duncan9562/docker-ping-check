@@ -12,3 +12,5 @@ pipeline:
     image: plugins/docker
     repo: duncan9562/docker-ping-check
     secrets: [ docker_username, docker_password ]
+    auto_tag: true
+
