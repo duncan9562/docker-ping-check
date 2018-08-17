@@ -1,5 +1,5 @@
 pipeline:
-  setup::
+  setup:
     image: docker
     commands:
       - docker build --rm -t docker-ping-check .
@@ -8,6 +8,18 @@ pipeline:
     when:
       branch: [master, development]
       event: push
+  
+  check_running:
+    image: docker
+    environment:
+      - DOCKER_HOST=tcp://docker:2375
+      commands:
+        - sleep 5
+        - docker ps | grep docker-ping-check
+      when:
+        branch: [master, development]
+        event: push
+  
   docker:
     image: plugins/docker
     repo: duncan9562/docker-ping-check
