@@ -9,13 +9,12 @@ pipeline:
       branch: [master, development]
       event: push
   
-  check_running:
+  start_container:
     image: docker
+    commands:
+      - docker run --rm docker-ping-check 4.2.2.1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    commands:
-      - sleep 5
-      - docker ps | grep docker-ping-check
     when:
       branch: [master, development]
       event: push
