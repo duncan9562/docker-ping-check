@@ -1,5 +1,5 @@
 pipeline:
-  setup:
+  build:
     image: docker
     commands:
       - docker build --rm -t docker-ping-check .
@@ -9,7 +9,7 @@ pipeline:
       branch: [master, development]
       event: push
   
-  start_container:
+  test_image:
     image: docker
     commands:
       - docker run --rm docker-ping-check 4.2.2.1
@@ -19,7 +19,7 @@ pipeline:
       branch: [master, development]
       event: push
   
-  docker:
+  push_docker_hub:
     image: plugins/docker
     repo: duncan9562/docker-ping-check
     secrets: [ docker_username, docker_password ]
