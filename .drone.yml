@@ -13,12 +13,12 @@ pipeline:
     image: docker
     environment:
       - DOCKER_HOST=tcp://docker:2375
-      commands:
-        - sleep 5
-        - docker ps | grep docker-ping-check
-      when:
-        branch: [master, development]
-        event: push
+    commands:
+      - sleep 5
+      - docker ps | grep docker-ping-check
+    when:
+      branch: [master, development]
+      event: push
   
   docker:
     image: plugins/docker
